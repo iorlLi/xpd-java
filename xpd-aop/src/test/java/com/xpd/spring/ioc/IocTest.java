@@ -17,6 +17,11 @@ public class IocTest {
     @Test
     public void  testImport(){
         printBeans(apc2);
+
+        Object colorFactoryBean = apc2.getBean("colorFactoryBean");
+        Object factoryBean = apc2.getBean("&colorFactoryBean");
+        System.out.println(colorFactoryBean.getClass());
+        System.out.println(factoryBean.getClass());
     }
 
     @Test

@@ -1,6 +1,7 @@
 package com.xpd.spring.config;
 
 import com.xpd.spring.bean.Color;
+import com.xpd.spring.bean.ColorFactoryBean;
 import com.xpd.spring.bean.Person;
 import com.xpd.spring.condition.MyBeanDefinitionRegistrar;
 import com.xpd.spring.condition.MyCondition;
@@ -32,7 +33,8 @@ public class MainConfig2 {
      * 3. @Import   直接指定某个类，
      *              selector选择批量导入，导入的类的id是全限名
      *              ImportBeanDefinitionRegistrar :手工导入类， 导入类的id自己指定
-     *
+     *              FactoryBean：默认获取的是工厂类调用getObject创建的对象
+     *                      如果需要获取工厂bean本身，使用前缀:  &colorFactoryBean
      */
     @Bean("person")
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -48,4 +50,12 @@ public class MainConfig2 {
         return new Person("windows", 66);
     }
 
+    /*
+        class com.xpd.spring.bean.Color
+        注册的是factoryBean，实际注入的是getObject()返回的对象。
+     */
+    @Bean
+    public ColorFactoryBean colorFactoryBean(){
+        return new ColorFactoryBean();
+    }
 }

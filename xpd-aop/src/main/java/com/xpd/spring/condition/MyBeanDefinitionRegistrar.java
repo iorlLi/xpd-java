@@ -9,7 +9,8 @@ import org.springframework.core.type.AnnotationMetadata;
 public class MyBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar {
 
     /**
-     * 原来beanDefinition是这样初始化的RootBeanDefinition
+     * 原来beanDefinition是这样初始化的: RootBeanDefinition
+     * registry: 有IOC容器所有的beanDefinition信息
      * @param importingClassMetadata 当前类的注解信息
      * @param registry               BeanDefinition注册类
      */
