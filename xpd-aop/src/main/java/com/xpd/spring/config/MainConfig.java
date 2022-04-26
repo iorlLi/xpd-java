@@ -30,25 +30,26 @@ public class MainConfig {
      * singleton: IOC容器初始化时候加载bean，
      * prototype: 每次getBean时候再加载
      * 针对单例bean：
-     *  @Lazy: IOC初始化时不再创建，第一次获取时候再加载
      *
-     *
-     *  给容器中注册组件：
-     *  1. 包扫描 + 注解， 如@service, @controller   本项目中的类
-     *  2. @bean注解， 导入第三方包中的类
-     *  3. @Import
+     * @Lazy: IOC初始化时不再创建，第一次获取时候再加载
+     * <p>
+     * <p>
+     * 给容器中注册组件：
+     * 1. 包扫描 + 注解， 如@service, @controller   本项目中的类
+     * 2. @bean注解， 导入第三方包中的类
+     * 3. @Import
      */
     @Bean("person")
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     @Lazy
     public Person person1() {
         System.out.println("IOC 加载bean..");
-        return new Person("xpd1", 4);
+        return new Person("xpd1", 4, "xpdd");
     }
 
     @Bean
     @Conditional(value = {MyCondition.class})
-    public Person person01(){
-        return new Person("windows", 66);
+    public Person person01() {
+        return new Person("windows", 66, "gas");
     }
 }

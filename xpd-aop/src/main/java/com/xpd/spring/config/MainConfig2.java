@@ -12,7 +12,7 @@ import org.springframework.context.annotation.*;
 /**
  * 等同于配置文件
  */
-@Configuration
+//@Configuration
 @ComponentScans(value = {
         @ComponentScan(value = "com.xpd.spring.ioc")
 })
@@ -33,7 +33,7 @@ public class MainConfig2 {
      * 3. @Import   直接指定某个类，
      *              selector选择批量导入，导入的类的id是全限名
      *              ImportBeanDefinitionRegistrar :手工导入类， 导入类的id自己指定
-     *              FactoryBean：默认获取的是工厂类调用getObject创建的对象
+     * 4. FactoryBean：默认获取的是工厂类调用getObject创建的对象
      *                      如果需要获取工厂bean本身，使用前缀:  &colorFactoryBean
      */
     @Bean("person")
@@ -41,13 +41,13 @@ public class MainConfig2 {
     @Lazy
     public Person person1() {
         System.out.println("IOC 加载bean..");
-        return new Person("xpd1", 4);
+        return new Person("xpd1", 4, "xpdd");
     }
 
     @Bean
     @Conditional(value = {MyCondition.class})
     public Person person01() {
-        return new Person("windows", 66);
+        return new Person("windows", 66, "gac");
     }
 
     /*

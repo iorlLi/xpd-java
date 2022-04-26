@@ -2,9 +2,15 @@ package com.xpd.spring.bean;
 
 import lombok.ToString;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @ToString
 public class Car {
-
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        System.out.println(map.get("a"));
+    }
     private String type;
 
     public Car() {

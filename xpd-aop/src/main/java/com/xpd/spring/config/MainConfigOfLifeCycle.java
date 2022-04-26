@@ -21,6 +21,22 @@ import org.springframework.context.annotation.Lazy;
  *      重写afterPropertiesSet方法，在属性赋值之后执行
  * 3. JSR250的注解，从方法名可知，是在构造器之后执行，
  *          @PostConstruct 和 @PreDestroy
+ * 4. BeanPostProcessor: 全局方法，容器中的bean初始化都受影响
+ *
+ *  AbstractAutowireCapableBeanFactory
+ *    #populateBean(beanName, mbd, instanceWrapper)
+ *    #initializeBean
+ *      applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
+ *          #### spring中有许多的BeanPostProcessor实现类，在这个方法中会循环依次执行的。
+ *          #### 比如@PostConstruct 注解为什么生效，可以打断点， 看看是哪个processor在执行：InitDestroyAnnotationBeanPostProcessor
+ *
+ *     invokeInitMethods(beanName, wrappedBean, mbd)
+ *      applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName)
+ *  Car1...constructor...  构造器
+ *  postProcessBeforeInitialization... car1
+ *  Car1...postConstruct...
+ *  Car1...afterPropertiesSet...
+ *  postProcessAfterInitialization... car1
  */
 @Configuration
 @ComponentScan("com.xpd.spring")
