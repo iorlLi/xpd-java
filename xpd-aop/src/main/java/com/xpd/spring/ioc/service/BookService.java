@@ -31,12 +31,12 @@ public class BookService implements ApplicationContextAware {
     //@Resource(name = "bookDao2")
     //@Resource
     @Inject
-    private BookDao bookDao2;
+    private BookDao bookDao;
 
     @Override
     public String toString() {
         return "BookService{" +
-                "bookDao=" + bookDao2 +
+                "bookDao=" + bookDao +
                 '}';
     }
 

@@ -18,7 +18,6 @@ public class MyCondition implements Condition {
 
         }
 
-
         String property = environment.getProperty("os.name");
         if(property.contains("Windows")){
             return true;

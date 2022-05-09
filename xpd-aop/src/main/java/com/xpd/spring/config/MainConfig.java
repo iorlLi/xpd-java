@@ -18,12 +18,12 @@ import org.springframework.context.annotation.*;
  */
 // 使用include过滤时， 需要指定默认规则为false：useDefaultFilters = false
 // excludeFilters 根据type排除相关类扫描，useDefaultFilters 默认为true
-@ComponentScans(value = {
+/*@ComponentScans(value = {
         @ComponentScan(value = "com.xpd.spring.ioc", includeFilters = {
                 @ComponentScan.Filter(type = FilterType.CUSTOM, classes = {MyTypeFilter.class})
         }, useDefaultFilters = false)
-})
-
+})*/
+@ComponentScan(value = "com.xpd.spring.ioc")
 public class MainConfig {
 
     /**
@@ -32,8 +32,6 @@ public class MainConfig {
      * 针对单例bean：
      *
      * @Lazy: IOC初始化时不再创建，第一次获取时候再加载
-     * <p>
-     * <p>
      * 给容器中注册组件：
      * 1. 包扫描 + 注解， 如@service, @controller   本项目中的类
      * 2. @bean注解， 导入第三方包中的类

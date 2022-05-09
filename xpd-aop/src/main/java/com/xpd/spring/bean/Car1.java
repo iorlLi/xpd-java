@@ -11,7 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 @Component
-public class Car1 implements InitializingBean, DisposableBean, ApplicationContextAware {
+public class Car1 implements InitializingBean, DisposableBean, ApplicationContextAware{
 
     public Car1() {
         System.out.println("Car1...constructor...");
