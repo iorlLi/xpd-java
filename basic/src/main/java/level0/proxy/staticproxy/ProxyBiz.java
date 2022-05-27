@@ -9,6 +9,10 @@ public class ProxyBiz implements BizService {
         this.target = target;
     }
 
+    /**
+     * 静态代理需要为每个需要代理的方法重写。
+     * @return
+     */
     @Override
     public String process() {
         System.out.println("proxy process start");

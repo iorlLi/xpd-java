@@ -3,7 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-../basic/.idea/libraries/**
+**/.idea/libraries/**
 
 ### STS ###
 .apt_generated

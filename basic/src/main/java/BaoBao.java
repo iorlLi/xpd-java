@@ -1,2 +1,6 @@
-package PACKAGE_NAME;public class BaoBao {
+public class BaoBao {
+    public static void main(String[] args) {
+
+    }
+
 }
