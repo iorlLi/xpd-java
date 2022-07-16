@@ -15,7 +15,11 @@ public class DynProxyHandler implements InvocationHandler {
         this.target = object;
     }
 
-    @Override
+    /*
+        proxy: 当前代理对象
+        method: 代理的方法，即代理对象执行的方法。
+
+     */
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("dyn proxy start");
         System.out.println("proxy method is " + method.getName());
@@ -30,7 +34,7 @@ public class DynProxyHandler implements InvocationHandler {
 
     public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
-        BizService userService = new UserBizService();
+        final BizService userService = new UserBizService();
         BizService userProxy = (BizService) Proxy.newProxyInstance(userService.getClass().getClassLoader(),
                 userService.getClass().getInterfaces(), new DynProxyHandler(userService));
         String process = userProxy.process();
@@ -42,7 +46,7 @@ public class DynProxyHandler implements InvocationHandler {
         Class<?> proxyClass = Proxy.getProxyClass(BizService.class.getClassLoader(), BizService.class);
         Constructor<?> constructor = proxyClass.getConstructor(InvocationHandler.class);
         BizService userProxy2 = (BizService) constructor.newInstance(new InvocationHandler() {
-            @Override
+
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 System.out.println("before");
                 Object invoke = method.invoke(userService, args);

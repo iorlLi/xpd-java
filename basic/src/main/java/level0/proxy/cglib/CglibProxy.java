@@ -8,20 +8,28 @@ import net.sf.cglib.proxy.MethodProxy;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class CglibProxy implements MethodInterceptor {
+public class CglibProxy<T> implements MethodInterceptor {
 
     @Override
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
         System.out.println("cglib before");
-        methodProxy.invokeSuper(o, objects);
+        //methodProxy.invokeSuper(o, objects);
         System.out.println("invokeSuper: " + o.getClass().getSimpleName());
         System.out.println("Superclass: " + o.getClass().getSuperclass().getSimpleName());
         System.out.println("cglib after");
         return null;
     }
 
+    public static <T> T getProxy(Class<T> clazz) {
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(clazz);
+        enhancer.setCallback(new CglibProxy<T>());
+
+        return (T) enhancer.create();
+    }
+
     public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "./");
+       // System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "./");
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(SchoolBus.class);
         enhancer.setCallback(new CglibProxy());
@@ -29,6 +37,9 @@ public class CglibProxy implements MethodInterceptor {
         SchoolBus car = (SchoolBus) enhancer.create();
         car.name();
         System.out.println("----------");
+
+        SchoolBus proxy = getProxy(SchoolBus.class);
+        proxy.name();
 
         /*//
         //car = (SchoolBus) enhancer.create();

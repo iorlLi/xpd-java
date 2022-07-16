@@ -32,8 +32,12 @@ public class Singleton {
         return singleton2;
     }
 
+
     public static void main(String[] args) {
         try {
+            /*
+                构造器破解单例模式
+             */
             Class<Singleton> clazz = Singleton.class;
             Constructor<Singleton> constructor = clazz.getDeclaredConstructor();
             constructor.setAccessible(true);

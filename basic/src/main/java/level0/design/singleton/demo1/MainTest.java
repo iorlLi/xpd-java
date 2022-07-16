@@ -1,5 +1,8 @@
 package level0.design.singleton.demo1;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
 public class MainTest {
     public static void main(String[] args) {
         Singleton instance1 = Singleton.getInstance1();
@@ -14,5 +17,8 @@ public class MainTest {
 
         System.out.println("AMAC".contains("AMAC"));
         System.out.println("AMAC2".contains("AMAC"));
+
+        JsonElement jsonElement = new JsonParser().parse("");
+
     }
 }
