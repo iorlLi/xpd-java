@@ -1,6 +1,5 @@
 package level0.ds.sort;
 
-import javax.rmi.ssl.SslRMIClientSocketFactory;
 import java.util.Arrays;
 
 public class HeapSort {

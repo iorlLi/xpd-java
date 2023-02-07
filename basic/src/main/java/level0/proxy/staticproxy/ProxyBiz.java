@@ -11,6 +11,7 @@ public class ProxyBiz implements BizService {
 
     /**
      * 静态代理需要为每个需要代理的方法重写。
+     *
      * @return
      */
     @Override
@@ -29,7 +30,7 @@ public class ProxyBiz implements BizService {
     public static void main(String[] args) {
         BizService bizService = new BizServiceImpl();
         BizService proxyBiz = new ProxyBiz(bizService);
-        if(proxyBiz.matchIt()){
+        if (proxyBiz.matchIt()) {
             System.out.println(proxyBiz.process());
         }
     }

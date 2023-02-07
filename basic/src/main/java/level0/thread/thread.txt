@@ -1,0 +1,17 @@
+1. 线程的创建方式
+ runnable、callable、futureTask
+
+2. windows查看所有进程
+ tasklist | findstr java 查看所有java相关的进程
+ taskkill pid  杀进程
+ jps: 查看所有java进程
+ jstack pid 查看某个进程的所有线程状态
+ jconsole: cmd + R，输入jconsole
+
+
+3. linux
+ 老板说应用有内存泄露的场景
+ jps
+ top -H -p pid
+
+

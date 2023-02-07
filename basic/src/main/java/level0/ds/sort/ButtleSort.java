@@ -14,8 +14,8 @@ public class ButtleSort {
     static void buttleSort(int arr[]) {
         //外层控制次数，内层控制比较
         int tmp;
-        boolean hasSwap = true;
         for (int i = 0; i < arr.length - 1; i++) {
+            boolean hasSwap = true;
             for (int j = 0; j < arr.length - 1 - i; j++) {
                 if ((tmp = arr[j]) > arr[j + 1]) {
                     arr[j] = arr[j + 1];
